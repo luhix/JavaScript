@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="test" style="width:200px; height:200px;background-color:red">
+        <div id="test2" style="width:100px; height:100px;background-color:rgb(17, 0, 255)"></div>
+    </div>
+    <a href="http://www.baidu.com" id="dd">百度</a>
+    <script>
+        
+        /*
+            1.事件冒泡ev(主流)和window.event 兼容写法
+                var oEvent = ev || event;
+              事件源对象：
+                srcElement(谷歌和IE)
+                target(火狐专用)  oEvent.target
+              获取鼠标的X和Y坐标:
+              console.log(oEvent.clientX, oEvent.clientY)
+              事件冒泡：
+                取消事件冒泡（cancleBubble）
+                var oEvent = ev || event;
+                oEvent.cancelBubble = true;
+            
+            2.超链接和点击事件同时触发
+                阻止默认的行为不去响应，只响应自己添加的事件
+                return false: 函数中 return false
+                oEvent.preventDefault()
+        */
+        
+        oDiv1 = document.getElementById('test');
+        oDiv = document.getElementById('test2');
+        oDiv.onclick = function(ev) {
+            ev.cancelBubble=true;
+           console.log(100);
+        }
+        oDiv1.onclick = function(ev) {
+           console.log(200);
+        }
+
+        oA = document.getElementById('dd');
+        oA.onclick = function(ev){
+            alert(222);
+            return false;
+        }
+    </script>
+</body>
+</html>
